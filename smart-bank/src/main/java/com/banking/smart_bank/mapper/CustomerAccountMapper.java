@@ -5,22 +5,20 @@ import com.banking.smart_bank.entity.CustomerAccount;
 
 public class CustomerAccountMapper {
 
-    public static CustomerAccount mapToAccount(CustomerAccountDto customeraccountDto){
-        CustomerAccount customeraccount = new CustomerAccount(
-                customeraccountDto.getId(),
-                customeraccountDto.getAccountHolderName(),
-                customeraccountDto.getBalance()
+    public static CustomerAccountDto mapToAccountDto(CustomerAccount account) {
+        return new CustomerAccountDto(
+                account.getId(),
+                account.getAccountHolderName(),  // Get name from the User entity
+                account.getBalance()
         );
-
-        return customeraccount;
     }
 
-    public static CustomerAccountDto mapToAccountDto(CustomerAccount customeraccount){
-        CustomerAccountDto customeraccountDto = new CustomerAccountDto(
-                customeraccount.getId(),
-                customeraccount.getAccountHolderName(),
-                customeraccount.getBalance()
-        );
-        return customeraccountDto;
+    public static CustomerAccount mapToAccount(CustomerAccountDto accountDto) {
+        CustomerAccount account = new CustomerAccount();
+        account.setId(accountDto.getId());
+        account.setBalance(accountDto.getBalance());
+        // We assume user is set elsewhere; `accountHolderName` is not stored in the entity directly
+        return account;
     }
-}
+    }
+

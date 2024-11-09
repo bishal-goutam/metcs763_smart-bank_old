@@ -17,8 +17,15 @@ public class CustomerAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "account_holder_name")
-    private String accountHolderName;
     private double balance;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public String getAccountHolderName() {
+        return user != null ? user.getFullname() : null;
+    }
+
 }
 

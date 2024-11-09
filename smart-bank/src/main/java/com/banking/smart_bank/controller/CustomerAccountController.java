@@ -1,12 +1,13 @@
 package com.banking.smart_bank.controller;
 
 import com.banking.smart_bank.dto.CustomerAccountDto;
-import com.banking.smart_bank.entity.CustomerAccount;
+import com.banking.smart_bank.entity.*;
 import com.banking.smart_bank.service.CustomerAccountService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @RestController
@@ -57,10 +58,17 @@ public class CustomerAccountController {
         return ResponseEntity.ok(accounts);
     }
 
-
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAccount(@PathVariable Long id){
         customerAccountService.deleteAccount(id);
         return ResponseEntity.ok("Account is deleted successfully!");
     }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<CustomerAccountDto>> getAccountsByUser(@PathVariable Long userId) {
+        List<CustomerAccountDto> accounts = customerAccountService.getAccountsByUser(userId);
+        return ResponseEntity.ok(accounts);
+    }
 }
+
+

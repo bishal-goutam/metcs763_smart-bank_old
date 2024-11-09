@@ -7,6 +7,7 @@ import com.banking.smart_bank.entity.CustomerAccount;
 import com.banking.smart_bank.mapper.CustomerAccountMapper;
 import com.banking.smart_bank.repository.CustomerAccountRepository;
 import com.banking.smart_bank.service.CustomerAccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class CustomerAccountServiceImpl implements CustomerAccountService {
-
+    @Autowired
     private CustomerAccountRepository customerAccountRepository;
 
     public CustomerAccountServiceImpl(CustomerAccountRepository customerAccountRepository) {
@@ -83,4 +84,13 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
                 .orElseThrow(() -> new RuntimeException("Account does not exists"));
         customerAccountRepository.deleteById(id);
     }
+
+    @Override
+    public List<CustomerAccountDto> getAccountsByUser(Long userId) {
+        List<CustomerAccount> accounts = customerAccountRepository.findByUserId(userId);
+        return accounts.stream()
+                .map(CustomerAccountMapper::mapToAccountDto)
+                .collect(Collectors.toList());
+    }
+
 }
