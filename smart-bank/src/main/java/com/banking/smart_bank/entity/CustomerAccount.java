@@ -1,4 +1,5 @@
 package com.banking.smart_bank.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class CustomerAccount {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore  // Prevents infinite recursion
     private User user;
 
     public String getAccountHolderName() {
