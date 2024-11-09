@@ -27,7 +27,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors().and()
+            .cors().and() // Enable CORS so that frontend and backend can communicate at different ports.
             .csrf(csrf -> csrf.disable())   // Disable CSRF for simplicity; consider enabling in production
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/login").permitAll()  // Allow access to login endpoint
