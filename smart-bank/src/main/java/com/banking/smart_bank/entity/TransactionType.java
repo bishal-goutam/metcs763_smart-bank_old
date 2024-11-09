@@ -1,7 +1,7 @@
 package com.banking.smart_bank.entity;
 
 public enum TransactionType {
-    credit, debit;
+    credit, debit
 
     /* public static TransactionType fromString(String type) {
         try {
