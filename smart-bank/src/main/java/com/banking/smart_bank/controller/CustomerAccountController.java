@@ -33,7 +33,7 @@ public class CustomerAccountController {
         return ResponseEntity.ok(customerAccountDto);
     }
 
-     @PutMapping("/{id}/deposit")
+    @PutMapping("/{id}/deposit")
     public ResponseEntity<CustomerAccountDto> deposit(@PathVariable Long id,
                                               @RequestBody Map<String, Double> request){
 

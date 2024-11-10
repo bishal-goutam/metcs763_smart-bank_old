@@ -27,12 +27,21 @@ public class Transaction {
 
     private LocalDateTime transactionDate;
     private String description;
-    private BigDecimal amount;
+    private double amount;
 
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
 
-    private BigDecimal balanceBefore;
-    private BigDecimal balanceAfter;
+    private double balanceBefore;
+    private double balanceAfter;
 
+    public Transaction(CustomerAccount account, LocalDateTime transactionDate, String description, double amount, TransactionType transactionType, double balanceBefore, double balanceAfter) {
+        this.account = account;
+        this.transactionDate = transactionDate;
+        this.description = description;
+        this.amount = amount;
+        this.transactionType = transactionType;
+        this.balanceBefore = balanceBefore;
+        this.balanceAfter = balanceAfter;
+    }
 }

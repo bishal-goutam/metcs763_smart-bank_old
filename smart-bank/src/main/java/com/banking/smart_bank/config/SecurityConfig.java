@@ -33,6 +33,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/login").permitAll()  // Allow access to login endpoint
               //  .requestMatchers("/api/test/**").permitAll()  // Temporarily allow all access to /api/test for testing
                 .requestMatchers("/api/accounts/user/**").authenticated()  // Require authentication for account endpoints
+                .requestMatchers("/api/transfer/internal").authenticated()
+                .requestMatchers("/api/transfer/external").authenticated()
                 .anyRequest().authenticated()  // All other endpoints require authentication
             )
             .httpBasic(Customizer.withDefaults());
